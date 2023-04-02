@@ -12,8 +12,12 @@ html {
   }
   
   .container {
-    max-width: 400px;
-    margin: 50px auto;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    height:  auto;
+    position: relative;
     background: white;
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -24,9 +28,11 @@ html {
     text-align: center;
   }
   
-  .item {
+  .items {
+    width: 100%;
     min-height: 70px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     border-bottom: 1px solid #F1F1F1;
   }
@@ -44,7 +50,7 @@ html {
     margin: 20px;
   }
   
-  p {
+  div.txt {
     margin: 0;
     padding: 20px;
     font-size: 20px;
@@ -96,4 +102,19 @@ html {
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
   }
+  .todo-delete{
+    background-color: red;
+    line-height: 1;
+    font-size: 19px;
+    padding: 9px;
+    border-radius: 12px;
+    width: auto;
+    cursor: pointer;
   
+  }
+  .task_container{
+    padding: 10px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+  }

@@ -1,37 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../styles.css">
-    <title>TO-DO List</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles.css">
+  <title>TO-DO List</title>
 </head>
+
 <body>
-    <div class="container" >
-       <div class="heading">
-        <h1><%=dayy %></h1>
-       </div>
-       <div class="items">
-        <% for(let i=0;i<thing.length;i++) { %>
-               <div class="item">
-                <input type="checkbox">
-                <p><%=thing[i] %>  </p>
-               </div>
-                
-             <%}%>
+  <div class="container">
+    <div class="heading">
+     <h1><%=dayy %></h1>
+    </div>
+    <div class="items">
+      <% for(let i=0;i<data.length;i++) { %>
+        <div class="task_container">
+            <!-- <input type="checkbox" name="todoval"> -->
+            <div class="txt"><%=  data[i].name %> </div>
+            <div>
+                <button class="todo-delete <%=  data[i].id  %> " type="submit">Delete</button>
+            </div>
+        </div>
+      <%}%>
         
 
         <form action="/" method="post">
             <input type="text" placeholder="Add Item" name="newItem" autocomplete="off">
             <button type="submit" name="btn">+</button>
         </form>
-       </div>
       
+
+       </div>
+       
     </div>
+    <!-- <footer class="footer">@ 2023 Priyal Jain .All rights reserved</footer> -->
    
    
-    
+    <script>
+        const deletebtn=document.querySelectorAll(".todo-delete")
+        deletebtn.forEach((button,i)=>{
+            button.addEventListener("click",async()=>{
+                const endPoint=`/${button.classList[1]}`
+                console.log(endPoint)
+                await fetch(endPoint,{
+                    method:"DELETE",
+                })
+                window.location.href="/" 
+                //<!-- .catch((err)=> console.log(err))
+                //.then(result => result.json()).then(result => console.log(result))
+               // .then(result => console.log(result));
+            } ) 
+            
+        })
+    </script>
 
 </body>
 </html>

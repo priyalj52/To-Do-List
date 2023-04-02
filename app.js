@@ -1,12 +1,22 @@
 const express=require("express")
 const bodyParser=require('body-parser')
 const app=express()
-let items=[]
-let item=""
+const mongoose=require("mongoose")
+
 app.set("view engine","ejs")
+mongoose.connect("mongodb://localhost:27017/todolistDB",{useNewUrlParser:true})
+//database
+const itemSchema={
+    name:String,
+  
+}
+//database name
+const Item=mongoose.model("Item",itemSchema)
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static("public"))
+app.use(express.json()); 
+
 app.get("/",function(req,res){
     let today=new Date();
     let options={
@@ -15,19 +25,31 @@ app.get("/",function(req,res){
         month:"long"
     }
     let day=today.toLocaleDateString("en-US",options)
-    res.render("list",{
-        dayy:day,
-        thing:items
-    })
-    
+    Item.find().then(result=>{
+        res.render("list", {
+            dayy:day,
+            data:result}
+        )}
+        )
 });
 
+app.delete("/:id",async(req,res)=>{
+    const result=await Item.findByIdAndDelete(req.params.id)
+    res.json(result)
+   
+    // return res.send({"status" : "success"})
+})
 app.post("/",(req,res)=>{
-         item=req.body.newItem
-         console.log(item)
-         items.push(item)
-         res.redirect("/")
-        })
+        const todo=new Item(
+            
+               { name:req.body.newItem}
+            
+        )
+        todo.save()
+        .then(result=>res.redirect("/"))
+         
+})
+       
 
 app.listen("3000",function(){
     console.log("server is at port 3000")
