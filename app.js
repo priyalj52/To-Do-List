@@ -33,9 +33,11 @@ app.get("/",function(req,res){
         )
 });
 
-app.delete("/:id",async(req,res)=>{
-    const result=await Item.findByIdAndDelete(req.params.id)
-    res.json(result)
+app.delete("/:id",(req,res)=>{
+    Item.findByIdAndDelete(req.params.id)
+    .then(result=>{
+        console.log(result)
+    })
    
     // return res.send({"status" : "success"})
 })
