@@ -103,7 +103,7 @@ html {
     text-align: center;
   }
   .todo-delete{
-    background-color: red;
+    background-color: #E91E63;
     line-height: 1;
     font-size: 19px;
     padding: 9px;
