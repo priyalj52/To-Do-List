@@ -25,19 +25,23 @@ app.get("/",function(req,res){
         month:"long"
     }
     let day=today.toLocaleDateString("en-US",options)
-    Item.find().then(result=>{
+    try{Item.find().then(result=>{
         res.render("list", {
             dayy:day,
             data:result}
         )}
-        )
+        )}catch(err){console.log(err)}
 });
 
 app.delete("/:id",(req,res)=>{
     Item.findByIdAndDelete(req.params.id)
     .then(result=>{
         console.log(result)
+    }).catch(err=>{
+        console.log(err)
     })
+      
+    
    
     // return res.send({"status" : "success"})
 })
@@ -49,6 +53,9 @@ app.post("/",(req,res)=>{
         )
         todo.save()
         .then(result=>res.redirect("/"))
+        .catch((err)=>{
+            console.log(err)
+        })
          
 })
        

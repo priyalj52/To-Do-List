@@ -44,9 +44,9 @@
             button.addEventListener("click",()=>{
                 const endPoint=`/${button.classList[1]}`
                 console.log(endPoint)
-                 fetch(endPoint,{
+                 try{fetch(endPoint,{
                     method:"DELETE",
-                })
+                })}catch(err){console.log(err)}
                 window.location.href="/" 
                 //<!-- .catch((err)=> console.log(err))
                 //.then(result => result.json()).then(result => console.log(result))
