@@ -2,9 +2,10 @@ const express=require("express")
 const bodyParser=require('body-parser')
 const app=express()
 const mongoose=require("mongoose")
+require('dotenv').config();
 
 app.set("view engine","ejs")
-mongoose.connect("mongodb://localhost:27017/todolistDB",{useNewUrlParser:true})
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true})
 //database
 const itemSchema={
     name:String,
