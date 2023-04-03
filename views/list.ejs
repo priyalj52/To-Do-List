@@ -41,13 +41,16 @@
     <script>
         const deletebtn=document.querySelectorAll(".todo-delete")
         deletebtn.forEach((button,i)=>{
-            button.addEventListener("click",()=>{
+            button.addEventListener("click",async()=>{
                 const endPoint=`/${button.classList[1]}`
                 console.log(endPoint)
-                 try{fetch(endPoint,{
+                 try{ await fetch(endPoint,{
                     method:"DELETE",
-                })}catch(err){console.log(err)}
+                }
+                )  
                 window.location.href="/" 
+              }catch(err){console.log(err)}
+               
                 //<!-- .catch((err)=> console.log(err))
                 //.then(result => result.json()).then(result => console.log(result))
                // .then(result => console.log(result));
