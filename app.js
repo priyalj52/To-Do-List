@@ -29,21 +29,26 @@ app.get("/",function(req,res){
         month:"long"
     }
     let day=today.toLocaleDateString("en-US",options)
+    
+    function func1(){
     try{Item.find().then(result=>{
         res.render("list", {
             dayy:day,
             data:result}
         )}
-        )}catch(err){console.log(err)}
+        )}catch(err){console.log(err)} 
+         let itemConnect=setTimeout(func1,1000)
 });
+        
 
 app.delete("/:id",(req,res)=>{
-    Item.findByIdAndDelete(req.params.id)
+     let del=setTimeout(func2,1000)
+    function func2(){Item.findByIdAndDelete(req.params.id)
     .then(result=>{
         console.log(result)
     }).catch(err=>{
         console.log(err)
-    })
+    })}
       
     
    
