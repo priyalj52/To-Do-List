@@ -37,8 +37,10 @@ app.get("/",function(req,res){
             data:result}
         )}
         )}catch(err){console.log(err)} 
-         let itemConnect=setTimeout(func1,1000)
-});
+        
+}
+     let itemConnect=setTimeout(func1,1000)
+     } );
         
 
 app.delete("/:id",(req,res)=>{
