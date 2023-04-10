@@ -7,7 +7,7 @@ try{
 const MONGODB_URI=`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.gfj9ke3.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`                                                            
 console.log(process.env.MONGO_PASS)
 app.set("view engine","ejs")
-mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology: true,})
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology: true,})
 }catch(err){console.log(err)};
 //database
 const itemSchema={
@@ -29,21 +29,28 @@ app.get("/",function(req,res){
         month:"long"
     }
     let day=today.toLocaleDateString("en-US",options)
+    
+    function func1(){
     try{Item.find().then(result=>{
         res.render("list", {
             dayy:day,
             data:result}
         )}
-        )}catch(err){console.log(err)}
-});
+        )}catch(err){console.log(err)} 
+        
+}
+     let itemConnect=setTimeout(func1,1000)
+     } );
+        
 
 app.delete("/:id",(req,res)=>{
-    Item.findByIdAndDelete(req.params.id)
+     let del=setTimeout(func2,1000)
+    function func2(){Item.findByIdAndDelete(req.params.id)
     .then(result=>{
         console.log(result)
     }).catch(err=>{
         console.log(err)
-    })
+    })}
       
     
    
