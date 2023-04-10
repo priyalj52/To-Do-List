@@ -41,15 +41,25 @@
     <script>
         const deletebtn=document.querySelectorAll(".todo-delete")
         deletebtn.forEach((button,i)=>{
-            button.addEventListener("click",async()=>{
+            button.addEventListener("click",()=>{
+              const name=async()=>{
                 const endPoint=`/${button.classList[1]}`
                 console.log(endPoint)
-                 try{ await fetch(endPoint,{
+                 await fetch(endPoint,{
                     method:"DELETE",
                 }
-                )  
-                window.location.href="/" 
-              }catch(err){console.log(err)}
+
+                ) 
+                
+                
+              }
+              name()  
+              location.reload()
+             
+                
+                
+                
+             
                
                 //<!-- .catch((err)=> console.log(err))
                 //.then(result => result.json()).then(result => console.log(result))
