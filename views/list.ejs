@@ -42,7 +42,7 @@
         const deletebtn=document.querySelectorAll(".todo-delete")
         deletebtn.forEach((button,i)=>{
             button.addEventListener("click",()=>{
-              try{const name=async()=>{
+              const name=async()=>{
                 const endPoint=`/${button.classList[1]}`
                 console.log(endPoint)
                  await fetch(endPoint,{
@@ -64,9 +64,7 @@
                 //<!-- .catch((err)=> console.log(err))
                 //.then(result => result.json()).then(result => console.log(result))
                // .then(result => console.log(result));
-            }catch(err){
-              console.log(err)
-            }} ) 
+            } ) 
             
         })
     </script>
