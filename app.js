@@ -5,9 +5,9 @@ const mongoose=require("mongoose")
 require('dotenv').config();
 try{
 const MONGODB_URI=`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.gfj9ke3.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`                                                            
-console.log(process.env.MONGO_PASS)
+
 app.set("view engine","ejs")
-mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology: true,})
+mongoose.connect(MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology: true,})
 }catch(err){console.log(err)};
 //database
 const itemSchema={
